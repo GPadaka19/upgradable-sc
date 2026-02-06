@@ -1,0 +1,6 @@
+TODO
+
+- Chainlink
+    - Cara integrasi
+    - ideas - harga token dll
+    - interface
