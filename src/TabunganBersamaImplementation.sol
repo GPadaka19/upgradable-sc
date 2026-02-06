@@ -23,14 +23,13 @@ contract TabunganBersamaImplementation is
 
     address public token;
 
-    uint256 public totalSupplyShares;
-    uint256 public totalSupplyAssets;
-
     mapping(address => uint256) public userSupplyShares;
+    uint256 public totalSupplyAssets;
 
     constructor() {
         _disableInitializers();
     }
+    uint256 public totalSupplyShares;
 
     function initialize(address _token) public initializer {
         token = _token;
@@ -41,6 +40,8 @@ contract TabunganBersamaImplementation is
 
     function deposit(uint256 _amount) public nonReentrant {
         if (_amount == 0) revert AmountIsZero();
+        if (_amount <= 1e18) revert InsufficientBalance();
+
         uint256 shares = 0;
 
         if (totalSupplyShares == 0) {
